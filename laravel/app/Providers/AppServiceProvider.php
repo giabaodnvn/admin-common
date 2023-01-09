@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\Category;
-use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register(RepositoryServiceProvider::class);
     }
 
     /**
@@ -25,13 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['elements.menu', 'elements.header','category'], function($view) {
-            $locale = App::getLocale();
-            $menus = Category::with(['subCategories'])->whereNull('parent_id')->get();
-            foreach($menus as $menu) {
-                $menu->setDefaultLocale($locale);
-            }
-            $view->with('menus', $menus);
-        });
+        //
     }
 }

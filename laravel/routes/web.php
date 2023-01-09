@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GroupController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,18 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('login', 'HomeController@showLoginForm')->name('admin-login');
+Route::post('login', 'HomeController@postFormLogin')->name('admin-post-login');
+//Route::middleware(['AdminAuth'])->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('admin-index');
+//});
 
-//Change language
-Route::get('/lang/{lang}', 'App\Http\Controllers\HomeController@changeLanguage')->name('change.language');
-Route::get('/404','App\Http\Controllers\HomeController@error')->name('web.error');
-Route::group([
-    'prefix' => '{locale}',
-    'middleware' => ['change.locale'], 
-    'where' => ['locale' => '[a-zA-Z]{2}']
-], function() {
-    Route::get('/','App\Http\Controllers\HomeController@index')->name('web.index');
-    Route::get('/{post}','App\Http\Controllers\HomeController@postDetail')->name('post.detail');
-    Route::get('/category/{category}','App\Http\Controllers\HomeController@getPostByCategory')->name('category.post');
-    Route::get('/tag/{tag}','App\Http\Controllers\HomeController@getPostByTag')->name('tag.post');
-});
-
+Route::get('group', [GroupController::class, 'index'])->name('group.list');
+Route::get('group-create', [GroupController::class, 'create'])->name('group.create');
+Route::post('group-create', [GroupController::class, 'store'])->name('group.store');
+Route::get('group-edit', [GroupController::class, 'edit'])->name('group.edit');
+Route::post('group-edit', [GroupController::class, 'update'])->name('group.update');
