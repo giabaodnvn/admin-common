@@ -205,6 +205,7 @@
             </div>
         </div>
     </section>
+    @include('_includes.preloader')
 @endsection
 @push('scripts')
     <!-- DataTables  & Plugins -->

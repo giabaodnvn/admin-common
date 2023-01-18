@@ -34,6 +34,7 @@
                                     <th>ID</th>
                                     <th>Tên Tổ</th>
                                     <th>Số thành viên</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -42,6 +43,12 @@
                                         <td>{{ $group->id }}</td>
                                         <td>{{ $group->name }}</td>
                                         <td>{{ 2 }}</td>
+                                        <td>
+                                            <div class="">
+                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('group.edit', $group->id) }}">Chỉnh sửa</a>
+                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('group.delete', $group->id) }}">Xóa</a>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

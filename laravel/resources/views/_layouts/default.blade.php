@@ -18,8 +18,6 @@
 {{--  {%- include head.html -%}--}}
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
     <div class="wrapper">
-{{--      {%- include preloader.html -%}--}}
-        @include('_includes.preloader')
 {{--      {%- include navbar.html -%}--}}
         @include('_includes.navbar')
 {{--      {%- include sidebar.html -%}--}}

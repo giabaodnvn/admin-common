@@ -17,7 +17,7 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu">
           <li class="nav-item">
-              <a href="" class="nav-link">
+              <a class="nav-link">
                   <i class="nav-icon fas fa-th"></i>
                   <p>Tổ<i class="fas fa-angle-left right"></i></p>
               </a>

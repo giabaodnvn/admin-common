@@ -20,6 +20,15 @@ class Group extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $table = 'groups';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+    ];
 
 }

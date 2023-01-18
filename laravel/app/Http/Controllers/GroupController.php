@@ -41,7 +41,23 @@ private $groupRepository;
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $data = [
+                'name' => $request->name,
+            ];
+            $created = $this->groupRepository->create($data);
+            $response = [
+                'message' => trans('messages.eating_free_option.created'),
+                'data' => $created->toArray(),
+            ];
+            return redirect()->route('group.list')->with(
+                'message',
+                $response['message']
+            );
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -63,7 +79,8 @@ private $groupRepository;
      */
     public function edit($id)
     {
-        //
+        $group = $this->groupRepository->find($id);
+        return view('')->with(['group' => $group]);
     }
 
     /**
@@ -86,6 +103,23 @@ private $groupRepository;
      */
     public function destroy($id)
     {
-        //
+        try {
+            $group = $this->groupRepository->find($id);
+            if (!empty($group)) {
+                $group->delete($id);
+            } else {
+                return redirect()->back()->withInput();
+            }
+            $response = [
+                'message' => 'Xóa thành công!',
+            ];
+            return redirect()->route('group.list')->with(
+                'message',
+                $response['message']
+            );
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 }

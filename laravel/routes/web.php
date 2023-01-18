@@ -23,5 +23,6 @@ Route::post('login', 'HomeController@postFormLogin')->name('admin-post-login');
 Route::get('group', [GroupController::class, 'index'])->name('group.list');
 Route::get('group-create', [GroupController::class, 'create'])->name('group.create');
 Route::post('group-create', [GroupController::class, 'store'])->name('group.store');
-Route::get('group-edit', [GroupController::class, 'edit'])->name('group.edit');
+Route::get('group-edit/{id}', [GroupController::class, 'edit'])->name('group.edit');
 Route::post('group-edit', [GroupController::class, 'update'])->name('group.update');
+Route::get('group-delete/{id}', [GroupController::class, 'destroy'])->name('group.delete');
