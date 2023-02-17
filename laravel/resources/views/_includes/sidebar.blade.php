@@ -1,5 +1,5 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-  <a href="{{ '/index.html'}}" class="brand-link logo-switch">
+  <a href="#" class="brand-link logo-switch">
     <img src="{{ '/assets/img/logo-xs.png' }}" alt="AdminLTE Docs Logo Small" class="brand-image-xl logo-xs">
     <img src="{{ '/assets/img/logo-xl.png'  }}" alt="AdminLTE Docs Logo Large" class="brand-image-xs logo-xl" style="left: 12px">
   </a>
@@ -39,10 +39,22 @@
           <li class="nav-item">
               <a href="" class="nav-link">
                   <i class="nav-icon fas fa-th"></i>
-                  <p>
-                      Giáo viên
-                  </p>
+                  <p>Giáo viên<i class="fas fa-angle-left right"></i></p>
               </a>
+              <ul class="nav nav-treeview" style="display: none;">
+                  <li class="nav-item">
+                      <a href="{{ route('teacher.list') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Danh sách</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{ route('teacher.create') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Thêm mới</p>
+                      </a>
+                  </li>
+              </ul>
           </li>
       </ul>
     </nav>

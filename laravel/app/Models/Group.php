@@ -31,4 +31,12 @@ class Group extends Model implements Transformable
         'name',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
 }

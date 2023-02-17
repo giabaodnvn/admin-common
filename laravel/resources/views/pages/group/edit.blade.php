@@ -1,5 +1,5 @@
 @extends('_layouts.default')
-@section('title', 'Tổ - tạo mới')
+@section('title', 'Tổ - chỉnh sửa')
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
@@ -18,16 +18,16 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Tạo mới</h3>
+                            <h3 class="card-title">Chỉnh sửa</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="group-create-form" action="{{ route('group.store') }}" method="post" class="h-adr">
+                        <form id="group-create-form" action="{{ route('group.update', $group->id) }}" method="post" class="h-adr">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Tên Tổ</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Tên tổ">
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $group->name) }}" placeholder="Tên tổ">
                                 </div>
                             </div>
                             <!-- /.card-body -->

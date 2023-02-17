@@ -1,11 +1,11 @@
 @extends('_layouts.default')
-@section('title', 'Tổ - danh sách')
+@section('title', 'Giáo viên - danh sách')
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tổ - danh sách</h1>
+                    <h1>Giáo viên - danh sách</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -23,21 +23,21 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tên Tổ</th>
-                                    <th>Số thành viên</th>
+                                    <th>Tên giáo viên</th>
+                                    <th>Tổ</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($groups as $group)
+                                @foreach($employees as $employee)
                                     <tr>
-                                        <td>{{ $group->id }}</td>
-                                        <td>{{ $group->name }}</td>
-                                        <td>{{ count($group->employees) }}</td>
+                                        <td>{{ $employee->id }}</td>
+                                        <td>{{ $employee->name }}</td>
+                                        <td>{{ $employee->group->name }}</td>
                                         <td>
                                             <div class="">
-                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('group.edit', $group->id) }}">Chỉnh sửa</a>
-                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('group.delete', $group->id) }}">Xóa</a>
+                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('teacher.edit', $employee->id) }}">Chỉnh sửa</a>
+                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('teacher.delete', $employee->id) }}">Xóa</a>
                                             </div>
                                         </td>
                                     </tr>

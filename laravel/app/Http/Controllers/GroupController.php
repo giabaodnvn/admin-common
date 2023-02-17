@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
-private $groupRepository;
+    private $groupRepository;
+
     public function __construct(GroupRepository $groupRepository)
     {
         $this->groupRepository = $groupRepository;
@@ -19,7 +20,7 @@ private $groupRepository;
      */
     public function index()
     {
-        $groups = $this->groupRepository->all();
+        $groups = $this->groupRepository->with('employees')->all();
         return view('pages.group.index')->with(['groups' => $groups]);
     }
 
@@ -47,7 +48,7 @@ private $groupRepository;
             ];
             $created = $this->groupRepository->create($data);
             $response = [
-                'message' => trans('messages.eating_free_option.created'),
+                'message' => 'OK!',
                 'data' => $created->toArray(),
             ];
             return redirect()->route('group.list')->with(
@@ -80,7 +81,7 @@ private $groupRepository;
     public function edit($id)
     {
         $group = $this->groupRepository->find($id);
-        return view('')->with(['group' => $group]);
+        return view('pages.group.edit')->with(['group' => $group]);
     }
 
     /**
@@ -92,7 +93,18 @@ private $groupRepository;
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $data = $request->only('name');
+            $groupUpdated = $this->groupRepository->update($data, $id);
+            $response = [
+                'message' => trans('messages.group.updated'),
+                'data' => $groupUpdated->toArray(),
+            ];
+            return redirect()->route('group.list')->with('message',
+                $response['message']);
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput();
+        }
     }
 
     /**

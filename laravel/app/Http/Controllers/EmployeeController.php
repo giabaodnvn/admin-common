@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interfaces\EmployeeRepository;
+use App\Repositories\Interfaces\GroupRepository;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    private $employeeRepository;
+    private $groupRepository;
+
+    public function __construct(EmployeeRepository $employeeRepository, GroupRepository $groupRepository)
+    {
+        $this->employeeRepository = $employeeRepository;
+        $this->groupRepository = $groupRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $groups = $this->groupRepository->all();
+        $employees = $this->employeeRepository->with('group')->get();
+        return view('pages.employee.index')->with(['employees' => $employees, 'groups' => $groups]);
     }
 
     /**
@@ -23,7 +36,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $groups = $this->groupRepository->all();
+        return view('pages.employee.create')->with(['groups' => $groups]);
     }
 
     /**
@@ -34,7 +48,21 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $data = $request->all();
+            $created = $this->employeeRepository->create($data);
+            $response = [
+                'message' => trans('OK'),
+                'data' => $created->toArray(),
+            ];
+            return redirect()->route('teacher.list')->with(
+                'message',
+                $response['message']
+            );
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -56,7 +84,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = $this->employeeRepository->find($id);
+        $groups = $this->groupRepository->get();
+        return view('pages.employee.edit')->with(['employee' => $employee, 'groups' => $groups]);
     }
 
     /**
@@ -68,7 +98,18 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $data = $request->except('_token');
+            $updated = $this->employeeRepository->update($data, $id);
+            $response = [
+                'message' => trans('OK!'),
+                'data' => $updated->toArray(),
+            ];
+            return redirect()->route('teacher.list')->with('message', $response['message']);
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -79,6 +120,15 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $deleted = $this->employeeRepository->delete($id);
+            $response = [
+                'message' => 'OK'
+            ];
+            return redirect()->route('teacher.list')->with('message', $response['message']);
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 }

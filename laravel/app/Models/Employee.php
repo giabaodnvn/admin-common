@@ -20,6 +20,30 @@ class Employee extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $table = 'employees';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'group_id',
+        'position_id',
+        'name',
+        'gender',
+        'birthday',
+        'phone',
+        'email',
+        'address'
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id', 'id');
+    }
 
 }
