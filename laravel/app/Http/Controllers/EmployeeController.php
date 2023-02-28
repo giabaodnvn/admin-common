@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EmployeeFormatExport;
+use App\Models\Employee;
+use App\Imports\EmployeeImport;
 use App\Repositories\Interfaces\EmployeeRepository;
 use App\Repositories\Interfaces\GroupRepository;
 use Illuminate\Http\Request;
+use Excel;
 
 class EmployeeController extends Controller
 {
@@ -129,6 +133,28 @@ class EmployeeController extends Controller
         } catch (\Exception $e) {
             logger($e->getMessage());
             return redirect()->back()->withInput();
+        }
+    }
+
+    public function exportFormRegister()
+    {
+        return (new EmployeeFormatExport())->download('Mẫu đăng ký.csv', \Maatwebsite\Excel\Excel::CSV);
+    }
+
+    public function importRegister(Request $request)
+    {
+        try {
+            Excel::import(new EmployeeImport, $request->file);
+            $response = [
+                'message' => 'Đã tạo thành công!!'
+            ];
+            return redirect()->route('teacher.list')->with('message', $response['message']);
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            $response = [
+                'error' => 'Thất bại!!',
+            ];
+            return redirect()->route('teacher.list')->with('error', $response['error']);
         }
     }
 }
