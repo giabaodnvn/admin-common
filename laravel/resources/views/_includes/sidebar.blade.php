@@ -56,6 +56,12 @@
                   </li>
               </ul>
           </li>
+          <li class="nav-item">
+              <a href="{{ route('admin-logout') }}" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Đăng xuất</p>
+              </a>
+          </li>
       </ul>
     </nav>
   </div>

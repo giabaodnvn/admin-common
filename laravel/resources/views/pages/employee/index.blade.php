@@ -7,6 +7,36 @@
                 <div class="col-sm-6">
                     <h1>Giáo viên - danh sách</h1>
                 </div>
+                <form action="{{ route('teacher.export-form') }}" method="post" class="d-inline-block">
+                    @csrf
+                    <button class="btn btn-primary d-inline-block" type="submit">Tải mẫu đăng ký</button>
+                </form>
+                <button type="button" class="btn btn-primary d-inline-block ml-3" data-toggle="modal" data-target="#importModal">
+                    File đăng ký
+                </button>
+                <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="{{ route('teacher.import-register') }}" method="post" class="d-inline-block" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">CSV Import</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="file">Chọn file CSV</label>
+                                    <input type="file" name="file" class="form-control">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+                                    <button type="submit" class="btn btn-primary">Nhập</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>

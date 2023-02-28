@@ -35,7 +35,8 @@ class Employee extends Model implements Transformable
         'birthday',
         'phone',
         'email',
-        'address'
+        'address',
+        'start_date',
     ];
 
     /**
