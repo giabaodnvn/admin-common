@@ -1,20 +1,22 @@
 <table>
     <thead class="text-pre">
     <tr>
-        <th>Tổ ID</th>
-        <th>Họ tên</th>
-        <th>email</th>
-        <th>số điện thoại</th>
-        <th>giới tính</th>
-        <th>chức vụ</th>
-        <th>Ngày tháng năm sinh</th>
-        <th>Ngày bắt đầu</th>
+        <th>Group ID</th>
+        <th>Full Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Gender</th>
+        <th>Position ID</th>
+        <th>Birthday</th>
+        <th>Start Date</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <th>4</th>
-        <th>Nguyễn Văn A</th>
+        <th>Nguyen Van A</th>
+        <th>111 Le Duan - Da Nang</th>
         <th>abc@gmail.com</th>
         <th>0768533566</th>
         <th>1</th>

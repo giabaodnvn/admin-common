@@ -28,15 +28,13 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="name">Họ và tên</label>
+                                            <label for="name">Họ và tên <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $employee->name) }}" placeholder="Họ và tên">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group @if($errors->get('email')) has-error @endif">
-                                            <label for="email">email</label>
+                                            <label for="email">Email <span class="text-danger">*</span></label>
                                             <input type="email" class="form-control" value="{{ old('email', $employee->email) }}"
                                                    name="email" placeholder="abc@gmail.com"/>
                                             @if($errors->has('email'))
@@ -46,7 +44,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group @if($errors->get('address')) has-error @endif">
-                                            <label for="address">Địa chỉ</label>
+                                            <label for="address">Địa chỉ <span class="text-danger">*</span></label>
                                             <input type="address" class="form-control" value="{{ old('address', $employee->address) }}"
                                                    name="address"/>
                                             @if($errors->has('address'))
@@ -54,11 +52,9 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="gender">Giới tính</label>
+                                            <label for="gender">Giới tính <span class="text-danger">*</span></label>
                                             @foreach(\Config::get('constant.gender_name') as $key => $gender)
                                                 <div class="radio mr-2">
                                                     <input type="radio" name="gender" id="gender{{$key}}"
@@ -68,8 +64,6 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group @if($errors->get('Tổ')) has-error @endif">
                                             <label for="group_id"> Tổ <span class="text-danger">*</span></label>
@@ -96,8 +90,6 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group @if($errors->get('phone')) has-error @endif">
                                             <label for="phone"> Số điện thoại <span class="text-danger">*</span></label>
@@ -109,10 +101,19 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="birthday">Ngày tháng năm sinh</label>
+                                            <label for="birthday">Ngày tháng năm sinh <span class="text-danger">*</span></label>
                                             <input type="date" class="form-control" id="birthday" name="birthday" value="{{ old('birthday', $employee->birthday) }}">
                                             @if($errors->has('birthday'))
                                                 <small class="text-danger">{{ $errors->first('birthday') }}</small>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="start_date">Ngày bắt đầu HĐ <span class="text-danger">*</span></label>
+                                            <input type="date" class="form-control" id="start_date" name="start_date" value="{{ old('start_date', $employee->start_date) }}">
+                                            @if($errors->has('start_date'))
+                                                <small class="text-danger">{{ $errors->first('start_date') }}</small>
                                             @endif
                                         </div>
                                     </div>
