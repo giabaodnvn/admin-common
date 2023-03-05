@@ -1,11 +1,11 @@
 @extends('_layouts.default')
-@section('title', 'Giáo viên -  chỉnh sửa')
+@section('title', 'nhân viên -  chỉnh sửa')
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Giáo viên</h1>
+                    <h1>nhân viên</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -22,7 +22,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="group-create-form" action="{{ route('teacher.update', $employee->id) }}" method="post" class="h-adr">
+                        <form id="group-create-form" action="{{ route('employee.update', $employee->id) }}" method="post" class="h-adr">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -71,8 +71,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group @if($errors->get('Tổ')) has-error @endif">
-                                            <label for="group_id"> Tổ <span class="text-danger">*</span></label>
+                                        <div class="form-group @if($errors->get('Khoa/Phòng')) has-error @endif">
+                                            <label for="group_id"> Khoa/Phòng <span class="text-danger">*</span></label>
                                             <select name="group_id" class="form-control" required>
                                                 @foreach($groups as $group)
                                                     <option value="{{ $group->id }}" @if($group->id == (old('group_id', $employee->group->id))) selected @endif>{{ $group->name }}</option>

@@ -1,7 +1,7 @@
-<table>
-    <thead class="text-pre">
+<table style="font-family: Times New Roman,Times, serif;">
+    <thead class="text-pre" >
     <tr>
-        <th>Tổ ID</th>
+        <th>Khoa/Phòng ID</th>
         <th>Họ tên</th>
         <th>email</th>
         <th>số điện thoại</th>
@@ -24,3 +24,4 @@
     </tr>
     </tbody>
 </table>
+

@@ -1,11 +1,11 @@
 @extends('_layouts.default')
-@section('title', 'Tổ - danh sách')
+@section('title', 'Khoa/Phòng - danh sách')
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tổ - danh sách</h1>
+                    <h1>Khoa/Phòng - danh sách</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -23,7 +23,7 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tên Tổ</th>
+                                    <th>Tên Khoa/Phòng</th>
                                     <th>Số thành viên</th>
                                     <th></th>
                                 </tr>

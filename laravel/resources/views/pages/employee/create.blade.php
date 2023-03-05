@@ -1,11 +1,11 @@
 @extends('_layouts.default')
-@section('title', 'Giáo viên - thêm mới')
+@section('title', 'nhân viên - thêm mới')
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Giáo viên</h1>
+                    <h1>nhân viên</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -28,7 +28,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="group-create-form" action="{{ route('teacher.store') }}" method="post" class="h-adr">
+                        <form id="group-create-form" action="{{ route('employee.store') }}" method="post" class="h-adr">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -78,8 +78,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group @if($errors->get('Tổ')) has-error @endif">
-                                            <label for="group_id"> Tổ <span class="text-danger">*</span></label>
+                                        <div class="form-group @if($errors->get('Khoa/Phòng')) has-error @endif">
+                                            <label for="group_id"> Khoa/Phòng <span class="text-danger">*</span></label>
                                                 <select name="group_id" class="form-control" required>
                                                     @foreach($groups as $group)
                                                         <option value="{{ $group->id }}">{{ $group->name }}</option>
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group @if($errors->get('Chức vụ')) has-error @endif">
-                                            <label for="position_id"> Tổ <span class="text-danger">*</span></label>
+                                            <label for="position_id"> Khoa/Phòng <span class="text-danger">*</span></label>
                                             <select name="position_id" class="form-control" required>
                                                 @foreach(\Config::get('constant.position') as $key => $position)
                                                     <option value="{{ $key }}">{{ $position }}</option>
