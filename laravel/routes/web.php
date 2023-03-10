@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\User\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,16 +41,5 @@ Route::middleware(['checkLogin'])->group(function () {
 //   import-register
 });
 
-//Route::get('group', [GroupController::class, 'index'])->name('group.list');
-//Route::get('group-create', [GroupController::class, 'create'])->name('group.create');
-//Route::post('group-create', [GroupController::class, 'store'])->name('group.store');
-//Route::get('group-edit/{id}', [GroupController::class, 'edit'])->name('group.edit');
-//Route::post('group-edit/{id}', [GroupController::class, 'update'])->name('group.update');
-//Route::get('group-delete/{id}', [GroupController::class, 'destroy'])->name('group.delete');
-//
-//Route::get('employee', [EmployeeController::class, 'index'])->name('employee.list');
-//Route::get('employee-create', [EmployeeController::class, 'create'])->name('employee.create');
-//Route::post('employee-create', [EmployeeController::class, 'store'])->name('employee.store');
-//Route::get('employee-edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
-//Route::post('employee-edit/{id}', [EmployeeController::class, 'update'])->name('employee.update');
-//Route::get('employee-delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
+
+Route::get('user', [UserController::class, 'index'])->name('user.list');
