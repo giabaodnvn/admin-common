@@ -11,9 +11,10 @@
                     @csrf
                     <button class="btn btn-primary d-inline-block" type="submit">Tải mẫu đăng ký</button>
                 </form>
+
                 <button type="button" class="btn btn-primary d-inline-block ml-3" data-toggle="modal" data-target="#importModal">
                     File đăng ký
-                </button>
+                </button> 
                 <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">

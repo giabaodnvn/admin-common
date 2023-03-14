@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Exports\EmployeeFormatExport;
 use App\Models\Employee;
@@ -8,6 +8,7 @@ use App\Imports\EmployeeImport;
 use App\Repositories\Interfaces\EmployeeRepository;
 use App\Repositories\Interfaces\GroupRepository;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Excel;
 
 class EmployeeController extends Controller
@@ -138,7 +139,8 @@ class EmployeeController extends Controller
 
     public function exportFormRegister()
     {
-        return (new EmployeeFormatExport())->download('Mẫu đăng ký.csv', \Maatwebsite\Excel\Excel::CSV);
+        return (new EmployeeFormatExport())->download('Mẫu đăng ký.xls', \Maatwebsite\Excel\Excel::XLS);
+        // return (new EmployeeFormatExport())->download('Mẫu đăng ký.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
     public function importRegister(Request $request)

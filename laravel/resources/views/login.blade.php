@@ -22,7 +22,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Mời bạn đăng nhập vào hệ thống</p>
 
       <form action="{{ route('admin-post-login') }}" method="post">
         @csrf
@@ -47,13 +47,13 @@
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
               <label for="remember">
-                Remember Me
+                Lưu lại
               </label>
             </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
           </div>
           <!-- /.col -->
         </div>
@@ -70,12 +70,12 @@
 {{--      </div>--}}
       <!-- /.social-auth-links -->
 
-      <p class="mb-1">
+      <!-- <p class="mb-1">
         <a href="">I forgot my password</a>
       </p>
       <p class="mb-0">
         <a href="" class="text-center">Register a new membership</a>
-      </p>
+      </p> -->
     </div>
     <!-- /.login-card-body -->
   </div>

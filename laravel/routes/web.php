@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\GroupController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\LoginUserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,5 +43,8 @@ Route::middleware(['checkLogin'])->group(function () {
 //   import-register
 });
 
-
+// User
 Route::get('user', [UserController::class, 'index'])->name('user.list');
+
+Route::get('loginUser', [LoginUserController::class, 'showLoginForm'])->name('user-login');
+Route::post('loginUser', [LoginUserController::class, 'postFormLogin'])->name('user-post-login');
