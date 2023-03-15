@@ -12,8 +12,8 @@ return [
         3 => 'khác'
     ],
     'position' => [
-        1 => 'Tổ trưởng',
-        2 => 'Tổ phó',
-        3 => 'Tổ viên'
+        1 => 'Trưởng Khoa/Phòng',
+        2 => 'Phó Khoa/Phòng',
+        3 => 'Nhân viên'
     ]
 ];

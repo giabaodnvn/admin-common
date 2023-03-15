@@ -1,13 +1,13 @@
 @extends('_layouts.default')
-@section('title', 'Giáo viên - danh sách')
+@section('title', 'Nhân viên - danh sách')
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Giáo viên - danh sách</h1>
+                    <h1>Nhân viên - danh sách</h1>
                 </div>
-                <form action="{{ route('teacher.export-form') }}" method="post" class="d-inline-block">
+                <form action="{{ route('employee.export-form') }}" method="post" class="d-inline-block">
                     @csrf
                     <button class="btn btn-primary d-inline-block" type="submit">Tải mẫu đăng ký</button>
                 </form>
@@ -17,7 +17,7 @@
                 <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('teacher.import-register') }}" method="post" class="d-inline-block" enctype="multipart/form-data">
+                            <form action="{{ route('employee.import-register') }}" method="post" class="d-inline-block" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">CSV Import</h5>
@@ -53,8 +53,8 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tên giáo viên</th>
-                                    <th>Tổ</th>
+                                    <th>Tên Nhân viên</th>
+                                    <th>Khoa/Phòng</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -66,8 +66,8 @@
                                         <td>{{ $employee->group->name }}</td>
                                         <td>
                                             <div class="">
-                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('teacher.edit', $employee->id) }}">Chỉnh sửa</a>
-                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('teacher.delete', $employee->id) }}">Xóa</a>
+                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('employee.edit', $employee->id) }}">Chỉnh sửa</a>
+                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('employee.delete', $employee->id) }}">Xóa</a>
                                             </div>
                                         </td>
                                     </tr>

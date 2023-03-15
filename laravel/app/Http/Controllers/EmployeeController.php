@@ -59,7 +59,7 @@ class EmployeeController extends Controller
                 'message' => trans('OK'),
                 'data' => $created->toArray(),
             ];
-            return redirect()->route('teacher.list')->with(
+            return redirect()->route('employee.list')->with(
                 'message',
                 $response['message']
             );
@@ -109,7 +109,7 @@ class EmployeeController extends Controller
                 'message' => trans('OK!'),
                 'data' => $updated->toArray(),
             ];
-            return redirect()->route('teacher.list')->with('message', $response['message']);
+            return redirect()->route('employee.list')->with('message', $response['message']);
         } catch (\Exception $e) {
             logger($e->getMessage());
             return redirect()->back()->withInput();
@@ -129,7 +129,7 @@ class EmployeeController extends Controller
             $response = [
                 'message' => 'OK'
             ];
-            return redirect()->route('teacher.list')->with('message', $response['message']);
+            return redirect()->route('employee.list')->with('message', $response['message']);
         } catch (\Exception $e) {
             logger($e->getMessage());
             return redirect()->back()->withInput();
@@ -148,13 +148,13 @@ class EmployeeController extends Controller
             $response = [
                 'message' => 'Đã tạo thành công!!'
             ];
-            return redirect()->route('teacher.list')->with('message', $response['message']);
+            return redirect()->route('employee.list')->with('message', $response['message']);
         } catch (\Exception $e) {
             logger($e->getMessage());
             $response = [
                 'error' => 'Thất bại!!',
             ];
-            return redirect()->route('teacher.list')->with('error', $response['error']);
+            return redirect()->route('employee.list')->with('error', $response['error']);
         }
     }
 }

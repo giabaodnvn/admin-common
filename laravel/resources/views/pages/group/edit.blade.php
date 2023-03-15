@@ -1,11 +1,11 @@
 @extends('_layouts.default')
-@section('title', 'Tổ - chỉnh sửa')
+@section('title', 'Khoa/Phòng - chỉnh sửa')
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tổ</h1>
+                    <h1>Khoa/Phòng</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -26,8 +26,8 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="name">Tên Tổ</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $group->name) }}" placeholder="Tên tổ">
+                                    <label for="name">Tên Khoa/Phòng</label>
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $group->name) }}" placeholder="Tên Khoa/Phòng">
                                 </div>
                             </div>
                             <!-- /.card-body -->

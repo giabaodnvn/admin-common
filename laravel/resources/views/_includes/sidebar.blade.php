@@ -19,7 +19,7 @@
           <li class="nav-item">
               <a class="nav-link">
                   <i class="nav-icon fas fa-th"></i>
-                  <p>Tổ<i class="fas fa-angle-left right"></i></p>
+                  <p>Khoa/Phòng<i class="fas fa-angle-left right"></i></p>
               </a>
               <ul class="nav nav-treeview" style="display: none;">
                   <li class="nav-item">
@@ -39,17 +39,17 @@
           <li class="nav-item">
               <a href="" class="nav-link">
                   <i class="nav-icon fas fa-th"></i>
-                  <p>Giáo viên<i class="fas fa-angle-left right"></i></p>
+                  <p>Nhân viên<i class="fas fa-angle-left right"></i></p>
               </a>
               <ul class="nav nav-treeview" style="display: none;">
                   <li class="nav-item">
-                      <a href="{{ route('teacher.list') }}" class="nav-link">
+                      <a href="{{ route('employee.list') }}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Danh sách</p>
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ route('teacher.create') }}" class="nav-link">
+                      <a href="{{ route('employee.create') }}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Thêm mới</p>
                       </a>
