@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use function Termwind\ask;
@@ -13,7 +13,7 @@ class LoginController extends Controller
             // user value cannot be found in session
             return redirect()->route('admin-index');
         }
-        return view('login');
+        return view('Admin.login');
     }
 
     public function postFormLogin(Request $request)

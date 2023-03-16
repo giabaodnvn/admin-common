@@ -19,17 +19,17 @@
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
     <div class="wrapper">
 {{--      {%- include navbar.html -%}--}}
-        @include('_includes.navbar')
+        @include('Admin._includes.navbar')
 {{--      {%- include sidebar.html -%}--}}
-        @include('_includes.sidebar')
+        @include('Admin._includes.sidebar')
         <div class="content-wrapper">
         @yield('content')
         </div>
 {{--      {%- include footer.html -%}--}}
-        @include('_includes.footer')
+        @include('Admin._includes.footer')
     </div>
 {{--    {% include foot.html -%}--}}
-@include('_includes.foot')
+@include('Admin._includes.foot')
 @stack('scripts')
 </body>
 </html>

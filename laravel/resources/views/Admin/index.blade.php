@@ -1,4 +1,4 @@
-@extends('_layouts.default')
+@extends('Admin._layouts.default')
 @section('title', 'home')
 @section('content')
     <section class="content-header">
@@ -11,7 +11,7 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Main content -->
-    @include('_includes.preloader')
+    @include('Admin._includes.preloader')
 @endsection
 @push('scripts')
     <!-- DataTables  & Plugins -->

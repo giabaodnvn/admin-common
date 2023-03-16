@@ -17,7 +17,7 @@ class EmployeeFormatExport implements FromView, WithColumnFormatting
      */
     public function view(): View
     {
-        return view('pages.employee.export_format');
+        return view('Admin.pages.employee.export_format');
     }
 
     public function columnFormats(): array

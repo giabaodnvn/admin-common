@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Repositories\Interfaces\GroupRepository;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class GroupController extends Controller
     public function index()
     {
         $groups = $this->groupRepository->with('employees')->all();
-        return view('pages.group.index')->with(['groups' => $groups]);
+        return view('Admin.pages.group.index')->with(['groups' => $groups]);
     }
 
     /**
@@ -31,7 +31,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return view('pages.group.create');
+        return view('Admin.pages.group.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class GroupController extends Controller
     public function edit($id)
     {
         $group = $this->groupRepository->find($id);
-        return view('pages.group.edit')->with(['group' => $group]);
+        return view('Admin.pages.group.edit')->with(['group' => $group]);
     }
 
     /**

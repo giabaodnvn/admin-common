@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\GroupController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

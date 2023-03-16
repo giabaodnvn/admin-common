@@ -1,41 +1,11 @@
-@extends('_layouts.default')
-@section('title', 'Nhân viên - danh sách')
+@extends('Admin._layouts.default')
+@section('title', 'Khoa/Phòng - danh sách')
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Nhân viên - danh sách</h1>
-                </div>
-                <form action="{{ route('employee.export-form') }}" method="post" class="d-inline-block">
-                    @csrf
-                    <button class="btn btn-primary d-inline-block" type="submit">Tải mẫu đăng ký</button>
-                </form>
-                <button type="button" class="btn btn-primary d-inline-block ml-3" data-toggle="modal" data-target="#importModal">
-                    File đăng ký
-                </button>
-                <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <form action="{{ route('employee.import-register') }}" method="post" class="d-inline-block" enctype="multipart/form-data">
-                                @csrf
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">CSV Import</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <label for="file">Chọn file CSV</label>
-                                    <input type="file" name="file" class="form-control">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
-                                    <button type="submit" class="btn btn-primary">Nhập</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    <h1>Khoa/Phòng - danh sách</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -53,21 +23,21 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tên Nhân viên</th>
-                                    <th>Khoa/Phòng</th>
+                                    <th>Tên Khoa/Phòng</th>
+                                    <th>Số thành viên</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($employees as $employee)
+                                @foreach($groups as $group)
                                     <tr>
-                                        <td>{{ $employee->id }}</td>
-                                        <td>{{ $employee->name }}</td>
-                                        <td>{{ $employee->group->name }}</td>
+                                        <td>{{ $group->id }}</td>
+                                        <td>{{ $group->name }}</td>
+                                        <td>{{ count($group->employees) }}</td>
                                         <td>
                                             <div class="">
-                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('employee.edit', $employee->id) }}">Chỉnh sửa</a>
-                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('employee.delete', $employee->id) }}">Xóa</a>
+                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('group.edit', $group->id) }}">Chỉnh sửa</a>
+                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('group.delete', $group->id) }}">Xóa</a>
                                             </div>
                                         </td>
                                     </tr>

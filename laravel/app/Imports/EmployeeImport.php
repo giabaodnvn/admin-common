@@ -46,7 +46,7 @@ class EmployeeImport implements ToCollection,WithStartRow
                 'phone'       => $row[4],
                 'gender'      => $row[5],
                 'position_id' => $row[6],
-                'birthday'    => date('Y-m-d', strtotime($row[7])),
+                'birthday'    => date('Y-m-d', strtotime($row[7])), 
                 'start_date'  => date('Y-m-d', strtotime($row[8])),
             ];
 //            dd($data);

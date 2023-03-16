@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Exports\EmployeeFormatExport;
 use App\Models\Employee;
@@ -30,7 +30,7 @@ class EmployeeController extends Controller
     {
         $groups = $this->groupRepository->all();
         $employees = $this->employeeRepository->with('group')->get();
-        return view('pages.employee.index')->with(['employees' => $employees, 'groups' => $groups]);
+        return view('Admin.pages.employee.index')->with(['employees' => $employees, 'groups' => $groups]);
     }
 
     /**
@@ -41,7 +41,7 @@ class EmployeeController extends Controller
     public function create()
     {
         $groups = $this->groupRepository->all();
-        return view('pages.employee.create')->with(['groups' => $groups]);
+        return view('Admin.pages.employee.create')->with(['groups' => $groups]);
     }
 
     /**
@@ -90,7 +90,7 @@ class EmployeeController extends Controller
     {
         $employee = $this->employeeRepository->find($id);
         $groups = $this->groupRepository->get();
-        return view('pages.employee.edit')->with(['employee' => $employee, 'groups' => $groups]);
+        return view('Admin.pages.employee.edit')->with(['employee' => $employee, 'groups' => $groups]);
     }
 
     /**
@@ -138,7 +138,8 @@ class EmployeeController extends Controller
 
     public function exportFormRegister()
     {
-        return (new EmployeeFormatExport())->download('Mẫu đăng ký.csv', \Maatwebsite\Excel\Excel::CSV);
+        // return (new EmployeeFormatExport())->download('Mẫu đăng ký.csv', \Maatwebsite\Excel\Excel::CSV);
+        return (new EmployeeFormatExport())->download('Mẫu đăng ký.xls', \Maatwebsite\Excel\Excel::XLS);
     }
 
     public function importRegister(Request $request)
