@@ -46,5 +46,8 @@ class Employee extends Model implements Transformable
     {
         return $this->belongsTo(Group::class, 'group_id', 'id');
     }
-
+    public function days_off()
+    {
+        return $this->hasOne(DaysOff::class);
+    }
 }

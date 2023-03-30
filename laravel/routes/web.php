@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\DayoffController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +14,6 @@ use App\Http\Controllers\Admin\LoginController;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
 */
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('admin-login');
@@ -37,5 +37,12 @@ Route::middleware(['checkLogin'])->group(function () {
     Route::get('employee-delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
     Route::post('employee-export-form', [EmployeeController::class, 'exportFormRegister'])->name('employee.export-form');
     Route::post('employee-import-register', [EmployeeController::class, 'importRegister'])->name('employee.import-register');
+
+    Route::get('dayoff', [DayoffController::class, 'index'])->name('dayoff.list');
+    Route::get('dayoff-edit/{id}', [DayoffController::class, 'edit'])->name('dayoff.edit');
+    Route::post('dayoff-edit/{id}', [DayoffController::class, 'update'])->name('dayoff.update');
+    Route::get('dayoff-delete/{id}', [DayoffController::class, 'destroy'])->name('dayoff.delete');
+    Route::post('dayoff-export-form', [DayoffController::class, 'exportFormRegister'])->name('dayoff.export-form');
+    Route::post('dayoff-import-register', [DayoffController::class, 'importRegister'])->name('dayoff.import-register');
 });
 
