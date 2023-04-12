@@ -77,6 +77,28 @@
                   </li>
               </ul>
           </li>
+
+          <li class="nav-item">
+              <a href="" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Tài khoản chấm công<i class="fas fa-angle-left right"></i></p>
+              </a>
+              <ul class="nav nav-treeview" style="display: none;">
+                  <li class="nav-item">
+                      <a href="{{ route('timekeepaccount.list') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Danh sách</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{ route('timekeepaccount.create') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Thêm mới</p>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+
           <li class="nav-item">
               <a href="{{ route('admin-logout') }}" class="nav-link">
                   <i class="nav-icon fas fa-th"></i>

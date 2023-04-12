@@ -1,43 +1,13 @@
-
 @extends('Admin._layouts.default')
-@section('title', 'Ngày nghỉ - danh sách')
+@section('title', 'Tài khoản chấm công - danh sách')
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Ngày nghỉ- danh sách</h1>
+                    <h1>Tài khoản chấm công- danh sách</h1>
                 </div>
-                <form action="{{ route('dayoff.export-form') }}" method="post" class="d-inline-block">
-                    @csrf
-                    <button class="btn btn-primary d-inline-block" type="submit">Tải mẫu đăng ký tổng hợp phép</button>
-                </form>
-                <button type="button" class="btn btn-primary d-inline-block ml-3" data-toggle="modal" data-target="#importModal">
-                    File đăng ký tổng hợp phép
-                </button>
-                <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <form action="{{ route('dayoff.import-register') }}" method="post" class="d-inline-block" enctype="multipart/form-data">
-                                @csrf
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Excel Import</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <label for="file">Chọn file Excel</label>
-                                    <input type="file" name="file" class="form-control">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
-                                    <button type="submit" class="btn btn-primary">Nhập</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -53,30 +23,31 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
+                                    <th>Tên khoa/phòng</th>
                                     <th>ID</th>
-                                    <th>ID nhân viên</th>
-                                    <th>Số phép</th>
-                                    <th>Số bù</th>
+                                    <th>Pass</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($dayoffs as $dayoff)
+                          
+                                @foreach($timekeepaccounts as $timekeepaccount)
                                     <tr>
-
-                                  
-                                        <td>{{ $dayoff->id }}</td>
-                                        <td>{{ $dayoff->employee->name }}</td>
-                                        <td>{{ $dayoff->Annual_Leave}}</td>
-                                        <td>{{ $dayoff->Compensatory_Day}}</td>
-                                        <td>  
+                                        <td>{{ $timekeepaccount->group->name }}</td>
+                                        <td>{{ $timekeepaccount->account }}</td>
+                                        <td>{{ $timekeepaccount->pass }}</td>
+                                        
+                                        <td>
                                             <div class="">
-                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('dayoff.edit', $dayoff->id) }}">Chỉnh sửa</a>
-                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('dayoff.delete', $dayoff->id) }}">Xóa</a>
+                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('timekeepaccount.edit', $timekeepaccount->id) }}">Chỉnh sửa</a>
+                                                <a class="btn btn-primary d-inline-block btn-sm mt-1" href="{{ route('timekeepaccount.delete', $timekeepaccount->id) }}">Xóa</a>
+                                         
                                             </div>
                                         </td>
                                     </tr>
                                 @endforeach
+                                 
+                                    
                                 </tbody>
                             </table>
                         </div>

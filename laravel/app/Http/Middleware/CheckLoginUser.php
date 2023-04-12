@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckLogin
+class CheckLoginUser
 {
     /**
      * Get the path the user should be redirected to when they are not authenticated.
@@ -14,9 +14,9 @@ class CheckLogin
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->session()->exists('user_admin')) {
+        if (!$request->session()->exists('user_login')) {
             // user value cannot be found in session
-            return redirect()->route('admin-login');
+            return redirect()->route('user-login');
         }
 
         return $next($request);

@@ -7,6 +7,10 @@
                 <div class="col-sm-6">
                     <h1>Khoa/Phòng - danh sách</h1>
                 </div>
+                <form action="{{ route('group.export-view') }}" method="post" class="d-inline-block">
+                    @csrf
+                    <button class="btn btn-primary d-inline-block" type="submit">tải bảng</button>
+                </form>
             </div>
         </div><!-- /.container-fluid -->
     </section>

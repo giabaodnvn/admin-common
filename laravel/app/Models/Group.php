@@ -39,4 +39,8 @@ class Group extends Model implements Transformable
         return $this->hasMany(Employee::class);
     }
 
+    public function timekeepaccounts()
+    {
+        return $this->hasMany(TimekeepAccount::class);
+    }
 }

@@ -2,36 +2,38 @@
 
 namespace App\Http\Controllers\Admin;
 
-// use App\Repositories\Interfaces\GroupRepository;
-// use Illuminate\Http\Request;
 
-
-use App\Exports\GroupViewExport;
-use App\Models\Group;
-use App\Repositories\Interfaces\GroupRepository;
 use Illuminate\Http\Request;
+use App\Models\TimekeepAccount;
+
+use App\Repositories\Interfaces\TimekeepAccountRepository;
+use App\Repositories\Interfaces\GroupRepository;
+
 use Excel;
 
 
-
-
-class GroupController extends Controller
+class TimekeepAccountController extends Controller
 {
-    private $groupRepository;
-
-    public function __construct(GroupRepository $groupRepository)
-    {
-        $this->groupRepository = $groupRepository;
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    private $timekeepaccountRepository;
+    private $groupRepository;
+
+    public function __construct(TimekeepAccountRepository $timekeepaccountRepository, GroupRepository $groupRepository)
+    {
+        $this->timekeepaccountRepository = $timekeepaccountRepository;
+        $this->groupRepository = $groupRepository;
+    }
     public function index()
     {
-        $groups = $this->groupRepository->with('employees')->all();
-        return view('Admin.pages.group.index')->with(['groups' => $groups]);
+        $groups = $this->groupRepository->all();
+        $timekeepaccounts = $this->timekeepaccountRepository->with('group')->get();
+        return view('Admin.pages.timekeepaccount.index')->with([ 'timekeepaccounts'=>$timekeepaccounts,'groups'=>$groups]);
+
+
     }
 
     /**
@@ -41,7 +43,8 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return view('Admin.pages.group.create');
+        $groups = $this->groupRepository->all();
+        return view('Admin.pages.timekeepaccount.create')->with(['groups' => $groups]);
     }
 
     /**
@@ -53,15 +56,13 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         try {
-            $data = [
-                'name' => $request->name,
-            ];
-            $created = $this->groupRepository->create($data);
+            $data = $request->all();
+            $created = $this->timekeepaccountRepository->create($data);
             $response = [
-                'message' => 'OK!',
+                'message' => trans('OK'),
                 'data' => $created->toArray(),
             ];
-            return redirect()->route('group.list')->with(
+            return redirect()->route('employee.list')->with(
                 'message',
                 $response['message']
             );
@@ -70,6 +71,7 @@ class GroupController extends Controller
             return redirect()->back()->withInput();
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -90,9 +92,11 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        $group = $this->groupRepository->find($id);
-        return view('Admin.pages.group.edit')->with(['group' => $group]);
+        $timekeepaccount = $this->timekeepaccountRepository->find($id);
+        $groups = $this->groupRepository->get();
+        return view('Admin.pages.timekeepaccount.edit')->with(['timekeepaccount' => $timekeepaccount, 'groups' => $groups]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -104,19 +108,18 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $data = $request->only('name');
-            $groupUpdated = $this->groupRepository->update($data, $id);
+            $data = $request->except('_token');
+            $updated = $this->timekeepaccountRepository->update($data, $id);
             $response = [
-                'message' => trans('messages.group.updated'),
-                'data' => $groupUpdated->toArray(),
+                'message' => trans('OK!'),
+                'data' => $updated->toArray(),
             ];
-            return redirect()->route('group.list')->with('message',
-                $response['message']);
+            return redirect()->route('timekeepaccount.list')->with('message', $response['message']);
         } catch (\Exception $e) {
+            logger($e->getMessage());
             return redirect()->back()->withInput();
         }
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -126,30 +129,14 @@ class GroupController extends Controller
     public function destroy($id)
     {
         try {
-            $group = $this->groupRepository->find($id);
-            if (!empty($group)) {
-                $group->delete($id);
-            } else {
-                return redirect()->back()->withInput();
-            }
+            $deleted = $this->timekeepaccountRepository->delete($id);
             $response = [
-                'message' => 'Xóa thành công!',
+                'message' => 'OK'
             ];
-            return redirect()->route('group.list')->with(
-                'message',
-                $response['message']
-            );
+            return redirect()->route('timekeepaccount.list')->with('message', $response['message']);
         } catch (\Exception $e) {
             logger($e->getMessage());
             return redirect()->back()->withInput();
         }
     }
-
-    public function exportview()
-    {
-        $groups = $this->groupRepository->with('employees')->all();
-        // return (new GroupViewExport())->download('group.xls', \Maatwebsite\Excel\Excel::XLS);
-        return (new GroupViewExport())->with(['groups' => $groups])->download('group.xls', \Maatwebsite\Excel\Excel::XLS);
-    }
-
 }

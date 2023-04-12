@@ -7,11 +7,11 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class Dayoff.
+ * Class TimekeepAccount.
  *
  * @package namespace App\Models;
  */
-class Dayoff extends Model implements Transformable
+class TimekeepAccount extends Model implements Transformable
 {
     use TransformableTrait;
 
@@ -20,20 +20,25 @@ class Dayoff extends Model implements Transformable
      *
      * @var array
      */
-    protected $table = 'dayoffs';
 
 
 
+    protected $table = 'timekeep_accounts';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'employee_id',
-        'Annual_Leave',
-        'Compensatory_Day',
-        
+        'group_id',
+        'account',
+        'pass',
     ];
-    public function employee()
+
+
+    public function group()
     {
-        return $this->belongsTo(Employee::class, 'employee_id', 'id');
+        return $this->belongsTo(Group::class, 'group_id', 'id');
     }
 }
-
